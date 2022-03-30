@@ -1,0 +1,8 @@
+.footer-content {
+  width: 50%;
+  text-align: center;
+}
+
+i {
+  color: var(--primary-color);
+}

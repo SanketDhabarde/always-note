@@ -1,0 +1,47 @@
+.landing-heading {
+  color: var(--primary-color);
+}
+
+.hero-img {
+  width: 90%;
+}
+
+main {
+  font-family: "Roboto", sans-serif;
+  height: 73vh;
+}
+
+footer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-content {
+  color: var(--secondary-text);
+}
+
+@media screen and (max-width: 37.5em) {
+  main.grid-2-col {
+    grid-template-columns: 1fr;
+  }
+
+  .get-started {
+    flex-direction: column;
+  }
+
+  main {
+    height: auto;
+  }
+
+  footer {
+    height: auto;
+  }
+}
