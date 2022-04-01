@@ -9,10 +9,6 @@ function CreateNote() {
   const [isLabelPalletVisible, setIsLabelPalletVisible] = useState(false);
   const [noteColor, setNoteColor] = useState("");
 
-  const toggleHandler = () => {
-    
-  }
-
   return (
     <div className={`note note-color-${noteColor} p-2 border-m`}>
       <input type="text" className="note-input p-1" placeholder="Title" />
