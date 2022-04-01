@@ -7,11 +7,7 @@ function Sidebar() {
     <div className="sidebar py-1">
       <button className="btn btn-primary">Create New Note</button>
       <Nav icon={<i className="fas fa-home"></i>} title="Home" link="/home" />
-      <Nav
-        icon={<i class="fas fa-tag"></i>}
-        title="Label"
-        link="/label"
-      />
+      <Nav icon={<i className="fas fa-tag"></i>} title="Label" link="/label" />
       <Nav
         icon={<i className="fas fa-archive"></i>}
         title="Archive"
