@@ -1,0 +1,15 @@
+.note-color-red {
+  background-color: var(--note-color-red);
+}
+.note-color-yellow {
+  background-color: var(--note-color-yellow);
+}
+.note-color-green {
+  background-color: var(--note-color-green);
+}
+.note-color-blue {
+  background-color: var(--note-color-blue);
+}
+.note-color-purple {
+  background-color: var(--note-color-purple);
+}
