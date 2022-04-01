@@ -1,0 +1,22 @@
+:root {
+  --btn-hover: #475a80;
+  --note-color-red: #5c2b29;
+  --note-color-yellow: #614a19;
+  --note-color-green: #345920;
+  --note-color-blue: #1e3a5f;
+  --note-color-purple: #42275e;
+}
+
+/* scroll */
+::-webkit-scrollbar {
+  width: 0.3em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
