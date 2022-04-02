@@ -14,11 +14,11 @@ function Note({ _id, title, note, noteColor, pinned }) {
       <div className="note-header">
         <h3>{title}</h3>
         {pinned ? (
-          <div className="note-icon center-div" onClick={pinNoteHandler}>
+          <div className="note-icon center-div" title="Unpin note" onClick={pinNoteHandler}>
             <i className="fas fa-thumbtack pin-note-icon"></i>
           </div>
         ) : (
-          <div className="note-icon center-div" onClick={pinNoteHandler}>
+          <div className="note-icon center-div" title="Pin note" onClick={pinNoteHandler}>
             <i className="fas fa-thumbtack unpin-note-icon"></i>
           </div>
         )}
