@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components";
-import { Home, Landing } from "./pages";
+import { Archive, Home, Landing, Trash } from "./pages";
 
 function App() {
   return (
@@ -11,6 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/archive" element={<Archive />} />
+        <Route path="/trash" element={<Trash />} />
       </Routes>
     </div>
   );

@@ -26,7 +26,7 @@
 }
 
 .note-icon:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--icon-bg);
   border-radius: 50%;
 }
 
@@ -36,4 +36,18 @@
 
 .unpin-note-icon {
   color: var(--gray-txt);
+}
+
+.note-title{
+  word-break: break-all;
+}
+
+.note-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-footer-options{
+  display: flex;
 }
