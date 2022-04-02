@@ -1,6 +1,7 @@
 const initialState = {
   notes: [],
   trash: [],
+  archives: [],
 };
 
 export const notesReducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ export const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         notes: state.notes.filter((note) => note._id !== payload._id),
+        archives: state.archives.filter((note) => note._id !== payload._id),
         trash: [...state.trash, { ...payload }],
       };
     case "DELETE_FROM_TRASH":
@@ -33,6 +35,18 @@ export const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         trash: state.trash.filter((note) => note._id !== payload._id),
+        notes: [...state.notes, { ...payload }],
+      };
+    case "ARCHIVE_NOTE":
+      return {
+        ...state,
+        archives: [...state.archives, { ...payload }],
+        notes: state.notes.filter((note) => note._id !== payload._id),
+      };
+    case "UNARCHIVE_NOTE":
+      return {
+        ...state,
+        archives: state.archives.filter((note) => note._id !== payload._id),
         notes: [...state.notes, { ...payload }],
       };
     default:

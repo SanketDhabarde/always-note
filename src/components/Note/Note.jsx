@@ -2,7 +2,7 @@ import React from "react";
 import { useNotes } from "../../context/note-context";
 import "./Note.css";
 
-function Note({ singleNote, trash }) {
+function Note({ singleNote, trash, archive }) {
   const { _id, title, note, noteColor, pinned } = singleNote;
   const { notesDispatch } = useNotes();
 
@@ -14,11 +14,21 @@ function Note({ singleNote, trash }) {
     notesDispatch({ type: "DELETE_NOTE", payload: singleNote });
   };
 
+  const archiveNoteHandler = (type) => {
+    console.log(type);
+    if (type === "archive") {
+      notesDispatch({ type: "ARCHIVE_NOTE", payload: singleNote });
+    } else {
+      notesDispatch({ type: "UNARCHIVE_NOTE", payload: singleNote });
+    }
+  };
+
   return (
     <div className={`card m-1 p-2 note-color-${noteColor}`}>
       <div className="note-header">
         <h3 className="note-title">{title}</h3>
         {!trash &&
+          !archive &&
           (pinned ? (
             <div
               className="note-icon center-div"
@@ -69,6 +79,23 @@ function Note({ singleNote, trash }) {
           <>
             <small className="note-date">Created at</small>
             <div className="note-footer-options">
+              {archive ? (
+                <div
+                  className="note-icon center-div"
+                  title="Unarchive"
+                  onClick={() => archiveNoteHandler("unarchive")}
+                >
+                  <i className="fas fa-archive"></i>
+                </div>
+              ) : (
+                <div
+                  className="note-icon center-div"
+                  title="Archive"
+                  onClick={() => archiveNoteHandler("archive")}
+                >
+                  <i className="fas fa-archive"></i>
+                </div>
+              )}
               <div
                 className="note-icon center-div"
                 title="Delete note"
