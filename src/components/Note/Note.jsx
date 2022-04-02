@@ -15,7 +15,6 @@ function Note({ singleNote, trash, archive }) {
   };
 
   const archiveNoteHandler = (type) => {
-    console.log(type);
     if (type === "archive") {
       notesDispatch({ type: "ARCHIVE_NOTE", payload: singleNote });
     } else {
