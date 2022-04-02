@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { useNotes } from "../../context/note-context";
 import { createNoteReducer } from "../../reducers";

@@ -30,7 +30,7 @@ function Home() {
           )}
           {unPinnedNotes.length > 0 && (
             <>
-              {pinnedNotes.length > 0 && <h4>OTHER</h4>}
+              {pinnedNotes.length > 0 && <h4>OTHERS</h4>}
               <div className="notes py-2">
                 {unPinnedNotes.map((note) => (
                   <Note key={note._id} {...note} />
