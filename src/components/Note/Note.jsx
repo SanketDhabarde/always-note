@@ -26,25 +26,19 @@ function Note({ singleNote, trash, archive }) {
     <div className={`card m-1 p-2 note-color-${noteColor}`}>
       <div className="note-header">
         <h3 className="note-title">{title}</h3>
-        {!trash &&
-          !archive &&
-          (pinned ? (
-            <div
-              className="note-icon center-div"
-              title="Unpin note"
-              onClick={pinNoteHandler}
-            >
-              <i className="fas fa-thumbtack pin-note-icon"></i>
-            </div>
-          ) : (
-            <div
-              className="note-icon center-div"
-              title="Pin note"
-              onClick={pinNoteHandler}
-            >
-              <i className="fas fa-thumbtack unpin-note-icon"></i>
-            </div>
-          ))}
+        {!trash && !archive && (
+          <div
+            className="note-icon center-div"
+            title={pinned ? "Unpin note" : "Pin note"}
+            onClick={pinNoteHandler}
+          >
+            <i
+              className={`fas fa-thumbtack ${
+                pinned ? "pin-note-icon" : "unpin-note-icon"
+              }`}
+            ></i>
+          </div>
+        )}
       </div>
       <div className="note-main">
         <p>{note}</p>
@@ -78,23 +72,18 @@ function Note({ singleNote, trash, archive }) {
           <>
             <small className="note-date">Created at</small>
             <div className="note-footer-options">
-              {archive ? (
-                <div
-                  className="note-icon center-div"
-                  title="Unarchive"
-                  onClick={() => archiveNoteHandler("unarchive")}
-                >
-                  <i className="fas fa-archive"></i>
-                </div>
-              ) : (
-                <div
-                  className="note-icon center-div"
-                  title="Archive"
-                  onClick={() => archiveNoteHandler("archive")}
-                >
-                  <i className="fas fa-archive"></i>
-                </div>
-              )}
+              <div
+                className="note-icon center-div"
+                title={archive ? "Unarchive" : "Archive"}
+                onClick={
+                  archive
+                    ? () => archiveNoteHandler("unarchive")
+                    : () => archiveNoteHandler("archive")
+                }
+              >
+                <i className="fas fa-archive"></i>
+              </div>
+
               <div
                 className="note-icon center-div"
                 title="Delete note"
