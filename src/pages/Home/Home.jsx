@@ -23,7 +23,7 @@ function Home() {
               <h4>PINNED</h4>
               <div className="notes py-2">
                 {pinnedNotes.map((note) => (
-                  <Note key={note._id} {...note} />
+                  <Note key={note._id} singleNote={note} />
                 ))}
               </div>
             </>
@@ -33,7 +33,7 @@ function Home() {
               {pinnedNotes.length > 0 && <h4>OTHERS</h4>}
               <div className="notes py-2">
                 {unPinnedNotes.map((note) => (
-                  <Note key={note._id} {...note} />
+                  <Note key={note._id} singleNote={note} />
                 ))}
               </div>
             </>

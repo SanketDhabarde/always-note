@@ -6,7 +6,7 @@ const NotesContext = createContext();
 const useNotes = () => useContext(NotesContext);
 
 const NotesProvider = ({ children }) => {
-  const [notesState, notesDispatch] = useReducer(notesReducer, { notes: [] });
+  const [notesState, notesDispatch] = useReducer(notesReducer, { notes: [], trash: [] });
 
   return (
     <NotesContext.Provider value={{ notesState, notesDispatch }}>
