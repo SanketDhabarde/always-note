@@ -46,7 +46,7 @@ function CreateNote() {
           }
         />
         <textarea
-          className="note-input p-1"
+          className="note-input p-1 note-textarea"
           cols="20"
           rows="5"
           placeholder="Take a note..."
