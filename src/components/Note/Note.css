@@ -13,3 +13,27 @@
 .note-color-purple {
   background-color: var(--note-color-purple);
 }
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-icon {
+  width: 1rem;
+  height: 1rem;
+  padding: 1rem;
+}
+
+.note-icon:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+}
+
+.pin-note-icon {
+  color: var(--primary-color);
+}
+
+.unpin-note-icon {
+  color: var(--gray-txt);
+}

@@ -1,11 +1,32 @@
 import React from "react";
+import { useNotes } from "../../context/note-context";
 import "./Note.css";
 
-function Note({ title, note, color }) {
+function Note({ _id, title, note, noteColor, pinned }) {
+  const { notesDispatch } = useNotes();
+
+  const pinNoteHandler = () => {
+    notesDispatch({ type: "TOGGLE_PIN_NOTE", payload: _id });
+  };
+
   return (
-    <div class={`card m-1 p-2 note-color-${color}`}>
-      <h3>{title}</h3>
-      <p>{note}</p>
+    <div className={`card m-1 p-2 note-color-${noteColor}`}>
+      <div className="note-header">
+        <h3>{title}</h3>
+        {pinned ? (
+          <div className="note-icon center-div" title="Unpin note" onClick={pinNoteHandler}>
+            <i className="fas fa-thumbtack pin-note-icon"></i>
+          </div>
+        ) : (
+          <div className="note-icon center-div" title="Pin note" onClick={pinNoteHandler}>
+            <i className="fas fa-thumbtack unpin-note-icon"></i>
+          </div>
+        )}
+      </div>
+      <div className="note-main">
+        <p>{note}</p>
+      </div>
+      <div className="note-footer"></div>
     </div>
   );
 }

@@ -17,6 +17,7 @@ function Footer() {
             className="m-1"
             href="https://github.com/SanketDhabarde"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="fab fa-github"></i>
           </a>
@@ -24,6 +25,7 @@ function Footer() {
             className="m-1"
             href="https://twitter.com/SanketDhabarde1"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="fab fa-twitter"></i>
           </a>
@@ -31,6 +33,7 @@ function Footer() {
             className="m-1"
             href="https://www.instagram.com/sanket_dhabarde/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="fab fa-instagram"></i>
           </a>
@@ -38,6 +41,7 @@ function Footer() {
             className="m-1"
             href="https://www.linkedin.com/in/sanket-dhabarde-91b028166/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="fab fa-linkedin-in"></i>
           </a>
