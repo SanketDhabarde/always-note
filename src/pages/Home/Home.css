@@ -1,0 +1,9 @@
+.grid-1-5-col{
+    display: grid;
+    grid-template-columns: 1.2fr 5fr;
+}
+
+.notes{
+    display: flex;
+    flex-wrap: wrap;
+}

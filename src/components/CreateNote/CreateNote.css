@@ -1,0 +1,83 @@
+.note {
+  width: 30rem;
+  border: 1px solid var(--secondary-color);
+}
+
+.note-input {
+  background: transparent;
+  color: var(--primary-text);
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+.note-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.note-options {
+  position: relative;
+}
+
+.note-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-option.btn {
+  margin: 0;
+}
+
+.note-color-pallet {
+  border: 1px solid var(--secondary-color);
+  background-color: var(--primary-bg);
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.note-labels{
+  border: 1px solid var(--secondary-color);
+  background-color: var(--primary-bg);
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 35%;
+  left: 12%;
+}
+
+/* note colors */
+.note-color {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.note-color-red {
+  background-color: var(--note-color-red);
+}
+.note-color-yellow {
+  background-color: var(--note-color-yellow);
+}
+.note-color-green {
+  background-color: var(--note-color-green);
+}
+.note-color-blue {
+  background-color: var(--note-color-blue);
+}
+.note-color-purple {
+  background-color: var(--note-color-purple);
+}
