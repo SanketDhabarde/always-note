@@ -1,6 +1,6 @@
 import React from "react";
 import { Note, Sidebar } from "../../components";
-import { useNotes } from "../../context/note-context";
+import { useNotes } from "../../context";
 
 function Trash() {
   const { notesState } = useNotes();

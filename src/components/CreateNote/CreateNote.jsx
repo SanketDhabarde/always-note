@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { v4 as uuid } from "uuid";
-import { useNotes } from "../../context/note-context";
+import { useNotes } from "../../context";
 import { createNoteReducer } from "../../reducers";
 import Checkbox from "../Checkbox/Checkbox";
 import "./CreateNote.css";

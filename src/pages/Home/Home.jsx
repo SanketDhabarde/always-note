@@ -1,6 +1,6 @@
 import React from "react";
 import { CreateNote, Note, Sidebar } from "../../components";
-import { useNotes } from "../../context/note-context";
+import { useNotes } from "../../context";
 import "./Home.css";
 
 function Home() {

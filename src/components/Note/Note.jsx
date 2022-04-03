@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNotes } from "../../context/note-context";
+import { useNotes } from "../../context";
 import EditNote from "../EditNote/EditNote";
 import "./Note.css";
 
