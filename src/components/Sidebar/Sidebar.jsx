@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import LabelModal from "../LabelModal/LabelModal";
 import Nav from "../Nav/Nav";
 import "./Sidebar.css";
 
 function Sidebar() {
+  const [isLabelModalVisible, setIsLabelModalVisible] = useState(false);
   return (
     <div className="sidebar py-1">
-      <button className="btn btn-primary">Create New Note</button>
+      <button
+        className="btn btn-primary"
+        onClick={() => setIsLabelModalVisible(true)}
+      >
+        Edit labels
+      </button>
       <Nav icon={<i className="fas fa-home"></i>} title="Home" link="/home" />
-      <Nav icon={<i className="fas fa-tag"></i>} title="Label" link="/label" />
       <Nav
         icon={<i className="fas fa-archive"></i>}
         title="Archive"
@@ -18,6 +24,7 @@ function Sidebar() {
         title="Trash"
         link="/trash"
       />
+      {isLabelModalVisible && <LabelModal setIsLabelModalVisible={setIsLabelModalVisible}/>}
     </div>
   );
 }

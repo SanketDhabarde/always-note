@@ -6,5 +6,18 @@ import CreateNote from "./CreateNote/CreateNote";
 import Note from "./Note/Note";
 import Checkbox from "./Checkbox/Checkbox";
 import EditNote from "./EditNote/EditNote";
+import LabelModal from "./LabelModal/LabelModal";
+import Label from "./Label/Label";
 
-export { Navbar, Footer, Sidebar, Nav, CreateNote, Note, Checkbox, EditNote };
+export {
+  Navbar,
+  Footer,
+  Sidebar,
+  Nav,
+  CreateNote,
+  Note,
+  Checkbox,
+  EditNote,
+  LabelModal,
+  Label,
+};
