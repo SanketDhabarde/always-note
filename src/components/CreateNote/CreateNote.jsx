@@ -14,13 +14,13 @@ const NoteColors = [
   { id: uuid(), color: "purple" },
 ];
 
-function CreateNote() {
+function CreateNote({ selectedNote, closeModalHandler }) {
   const [state, dispatch] = useReducer(createNoteReducer, {
-    title: "",
-    note: "",
+    title: selectedNote?.title || "",
+    note: selectedNote?.note || "",
     isColorPalletVisible: false,
     isLabelPalletVisible: false,
-    noteColor: "",
+    noteColor: selectedNote?.noteColor || "",
   });
   const { title, note, isColorPalletVisible, isLabelPalletVisible, noteColor } =
     state;
@@ -33,9 +33,16 @@ function CreateNote() {
     dispatch({ type: "RESET_STATE" });
   };
 
+  const editNoteHandler = (e) => {
+    e.preventDefault();
+    const updatedNoteFields = { _id: selectedNote._id, title, note, noteColor };
+    notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
+    closeModalHandler(false);
+  };
+
   return (
     <div className={`note note-color-${noteColor} p-2 border-m`}>
-      <form onSubmit={noteAddHandler}>
+      <form onSubmit={selectedNote ? editNoteHandler : noteAddHandler}>
         <input
           type="text"
           className="note-input p-1"
@@ -68,7 +75,7 @@ function CreateNote() {
               ></i>
             </div>
             <button className="btn btn-primary" type="submit">
-              Add
+              {selectedNote ? "Edit" : "Add"}
             </button>
           </div>
           {isColorPalletVisible && (

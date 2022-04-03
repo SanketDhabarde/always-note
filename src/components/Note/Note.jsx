@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNotes } from "../../context/note-context";
+import EditNote from "../EditNote/EditNote";
 import "./Note.css";
 
 function Note({ singleNote, trash, archive }) {
   const { _id, title, note, noteColor, pinned } = singleNote;
+  const [isEditEnable, setIsEditEnable] = useState(false);
   const { notesDispatch } = useNotes();
 
   const pinNoteHandler = () => {
@@ -74,6 +76,13 @@ function Note({ singleNote, trash, archive }) {
             <div className="note-footer-options">
               <div
                 className="note-icon center-div"
+                title="Edit note"
+                onClick={() => setIsEditEnable((prevState) => !prevState)}
+              >
+                <i className="fas fa-edit"></i>
+              </div>
+              <div
+                className="note-icon center-div"
                 title={archive ? "Unarchive" : "Archive"}
                 onClick={
                   archive
@@ -95,6 +104,9 @@ function Note({ singleNote, trash, archive }) {
           </>
         )}
       </div>
+      {isEditEnable && (
+        <EditNote singleNote={singleNote} editHandler={setIsEditEnable} />
+      )}
     </div>
   );
 }

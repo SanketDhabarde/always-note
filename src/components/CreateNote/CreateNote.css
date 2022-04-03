@@ -1,6 +1,7 @@
 .note {
   width: 30rem;
   border: 1px solid var(--secondary-color);
+  background-color: var(--primary-bg);
 }
 
 .note-input {
@@ -47,7 +48,7 @@
   gap: 1rem;
 }
 
-.note-labels{
+.note-labels {
   border: 1px solid var(--secondary-color);
   background-color: var(--primary-bg);
   width: fit-content;
