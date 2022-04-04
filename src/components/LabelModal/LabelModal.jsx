@@ -36,7 +36,7 @@ function LabelModal({ setIsLabelModalVisible }) {
   return (
     <div className="backdrop" onClick={closeModalHandler}>
       <div className="label-modal p-2">
-        <h4>Edit labels</h4>
+        <h4>Create labels</h4>
         <div className="label-header">
           <form onSubmit={createLabelHandler}>
             <input
@@ -45,6 +45,7 @@ function LabelModal({ setIsLabelModalVisible }) {
               value={label}
               className="create-label-input py-1"
               onChange={(e) => changeHandler(e.target.value)}
+              autoFocus
             />
             <div
               className="note-icon center-div"

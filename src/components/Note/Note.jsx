@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNotes } from "../../context";
+import Chips from "../Chips/Chips";
 import EditNote from "../EditNote/EditNote";
 import "./Note.css";
 
 function Note({ singleNote, trash, archive }) {
-  const { _id, title, note, noteColor, pinned } = singleNote;
+  const { _id, title, note, noteColor, pinned, tags } = singleNote;
   const [isEditEnable, setIsEditEnable] = useState(false);
   const { notesDispatch } = useNotes();
 
@@ -42,8 +43,13 @@ function Note({ singleNote, trash, archive }) {
           </div>
         )}
       </div>
-      <div className="note-main">
+      <div className="note-main py-1">
         <p>{note}</p>
+      </div>
+      <div className="notes-labels py-1">
+        {tags.map((tag, index) => (
+          <Chips key={index} text={tag} />
+        ))}
       </div>
       <div className="note-footer py-2">
         {trash ? (

@@ -7,6 +7,8 @@
   top: 30%;
   left: 40%;
   width: 20rem;
+  max-height: 25rem;
+  overflow-y: scroll;
   background-color: var(--primary-bg);
 }
 

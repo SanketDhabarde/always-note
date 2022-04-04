@@ -1,8 +1,9 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { useNotes } from "../../context";
+import { useLabels, useNotes } from "../../context";
 import { createNoteReducer } from "../../reducers";
 import Checkbox from "../Checkbox/Checkbox";
+import Chips from "../Chips/Chips";
 import "./CreateNote.css";
 
 const NoteColors = [
@@ -21,23 +22,71 @@ function CreateNote({ selectedNote, closeModalHandler }) {
     isColorPalletVisible: false,
     isLabelPalletVisible: false,
     noteColor: selectedNote?.noteColor || "",
+    tags: selectedNote?.tags || [],
   });
-  const { title, note, isColorPalletVisible, isLabelPalletVisible, noteColor } =
-    state;
-  const { notesDispatch } = useNotes();
+  const {
+    title,
+    note,
+    isColorPalletVisible,
+    isLabelPalletVisible,
+    noteColor,
+    tags,
+  } = state;
+  const { notesState, notesDispatch } = useNotes();
+  const { labelsState } = useLabels();
+  const { labels } = labelsState;
 
   const noteAddHandler = (e) => {
     e.preventDefault();
-    const newNote = { _id: uuid(), title, note, pinned: false, noteColor };
+    const newNote = {
+      _id: uuid(),
+      title,
+      note,
+      pinned: false,
+      noteColor,
+      tags: [...tags],
+    };
     notesDispatch({ type: "ADD_NOTE", payload: newNote });
     dispatch({ type: "RESET_STATE" });
   };
 
   const editNoteHandler = (e) => {
     e.preventDefault();
-    const updatedNoteFields = { _id: selectedNote._id, title, note, noteColor };
+    const updatedNoteFields = {
+      _id: selectedNote._id,
+      title,
+      note,
+      noteColor,
+    };
     notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
     closeModalHandler(false);
+  };
+
+  const handleOnChange = (selectedNote, label) => {
+    if (selectedNote) {
+      const isTagAlreadyAdded = selectedNote.tags.includes(label);
+      if (isTagAlreadyAdded) {
+        const newTags = selectedNote.tags.filter((tag) => tag !== label);
+        const updatedNoteFields = {
+          _id: selectedNote._id,
+          tags: [...newTags],
+        };
+        notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
+      } else {
+        const updatedNoteFields = {
+          _id: selectedNote._id,
+          tags: [...selectedNote.tags, label],
+        };
+        notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
+      }
+    } else {
+      const isTagAlreadyAdded = tags.includes(label);
+      if (isTagAlreadyAdded) {
+        dispatch({ type: "REMOVE_TAG", payload: label });
+      } else {
+        dispatch({ type: "ADD_TAG", payload: label });
+      }
+    }
   };
 
   return (
@@ -62,6 +111,13 @@ function CreateNote({ selectedNote, closeModalHandler }) {
             dispatch({ type: "SET_NOTE", payload: e.target.value })
           }
         ></textarea>
+        <div className="selected-labels">
+          {selectedNote
+            ? selectedNote.tags.map((tag, index) => (
+                <Chips key={index} text={tag} />
+              ))
+            : tags.map((tag, index) => <Chips key={index} text={tag} />)}
+        </div>
         <div className="note-options">
           <div className="note-option">
             <div className="note-icons">
@@ -93,10 +149,19 @@ function CreateNote({ selectedNote, closeModalHandler }) {
           )}
           {isLabelPalletVisible && (
             <div className="note-labels p-2 border-m">
-              <p className="text-m">Label Note</p>
-              <Checkbox title="Label 1" />
-              <Checkbox title="Label 2" />
-              <Checkbox title="Label 3" />
+              <p className="text-s">Label Note</p>
+              {labels.map(({ _id, label }) => (
+                <Checkbox
+                  key={_id}
+                  title={label}
+                  checked={
+                    selectedNote
+                      ? selectedNote.tags.includes(label)
+                      : tags.includes(label)
+                  }
+                  changeHandler={() => handleOnChange(selectedNote, label)}
+                />
+              ))}
             </div>
           )}
         </div>

@@ -4,6 +4,7 @@ const initialState = {
   isColorPalletVisible: false,
   isLabelPalletVisible: false,
   noteColor: "",
+  tags: [],
 };
 
 export const createNoteReducer = (state = initialState, action) => {
@@ -34,6 +35,16 @@ export const createNoteReducer = (state = initialState, action) => {
         ...state,
         isLabelPalletVisible: !state.isLabelPalletVisible,
       };
+    case "ADD_TAG":
+      return{
+        ...state,
+        tags: [...state.tags, payload]
+      }
+    case "REMOVE_TAG":
+      return{
+        ...state,
+        tags: state.tags.filter(tag => tag !== payload)
+      }
     case "RESET_STATE":
       return initialState;
     default:

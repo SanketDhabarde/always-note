@@ -11,7 +11,7 @@ function Sidebar() {
         className="btn btn-primary"
         onClick={() => setIsLabelModalVisible(true)}
       >
-        Edit labels
+        Create labels
       </button>
       <Nav icon={<i className="fas fa-home"></i>} title="Home" link="/home" />
       <Nav
