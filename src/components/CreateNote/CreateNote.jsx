@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { useLabels, useNotes } from "../../context";
 import { createNoteReducer } from "../../reducers";
@@ -32,7 +32,7 @@ function CreateNote({ selectedNote, closeModalHandler }) {
     noteColor,
     tags,
   } = state;
-  const { notesState, notesDispatch } = useNotes();
+  const { notesDispatch } = useNotes();
   const { labelsState } = useLabels();
   const { labels } = labelsState;
 
