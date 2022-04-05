@@ -10,10 +10,8 @@ function LabelModal({ setIsLabelModalVisible }) {
   const { labelsState, labelsDispatch } = useLabels();
   const { labels } = labelsState;
 
-  const closeModalHandler = (event) => {
-    if (event.target.classList.contains("backdrop")) {
-      setIsLabelModalVisible(false);
-    }
+  const closeModalHandler = () => {
+    setIsLabelModalVisible(false);
   };
 
   const createLabelHandler = (e) => {
@@ -35,7 +33,7 @@ function LabelModal({ setIsLabelModalVisible }) {
 
   return (
     <div className="backdrop" onClick={closeModalHandler}>
-      <div className="label-modal p-2">
+      <div className="label-modal p-2" onClick={(e) => e.stopPropagation()}>
         <h4>Create labels</h4>
         <div className="label-header">
           <form onSubmit={createLabelHandler}>
