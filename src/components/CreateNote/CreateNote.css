@@ -1,6 +1,7 @@
 .note {
   width: 30rem;
   border: 1px solid var(--secondary-color);
+  background-color: var(--primary-bg);
 }
 
 .note-input {
@@ -47,10 +48,12 @@
   gap: 1rem;
 }
 
-.note-labels{
+.note-labels {
   border: 1px solid var(--secondary-color);
   background-color: var(--primary-bg);
-  width: fit-content;
+  width: 15rem;
+  max-height: 20rem;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -58,6 +61,10 @@
   left: 12%;
 }
 
+.selected-labels{
+  display: flex;
+  flex-wrap: wrap;
+}
 /* note colors */
 .note-color {
   width: 2rem;

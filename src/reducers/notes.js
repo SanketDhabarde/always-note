@@ -26,6 +26,16 @@ export const notesReducer = (state = initialState, action) => {
         archives: state.archives.filter((note) => note._id !== payload._id),
         trash: [...state.trash, { ...payload }],
       };
+    case "UPDATE_NOTE":
+      return {
+        ...state,
+        notes: state.notes.map((note) =>
+          note._id === payload._id ? { ...note, ...payload } : note
+        ),
+        archives: state.archives.map((note) =>
+          note._id === payload._id ? { ...note, ...payload } : note
+        ),
+      };
     case "DELETE_FROM_TRASH":
       return {
         ...state,

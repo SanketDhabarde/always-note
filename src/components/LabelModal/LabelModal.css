@@ -1,0 +1,22 @@
+.label-header form {
+  display: flex;
+}
+
+.label-modal {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  width: 20rem;
+  max-height: 25rem;
+  overflow-y: scroll;
+  background-color: var(--primary-bg);
+}
+
+.create-label-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  outline: none;
+  color: var(--primary-text);
+  width: 100%;
+}

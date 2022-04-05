@@ -5,5 +5,21 @@ import Nav from "./Nav/Nav";
 import CreateNote from "./CreateNote/CreateNote";
 import Note from "./Note/Note";
 import Checkbox from "./Checkbox/Checkbox";
+import EditNote from "./EditNote/EditNote";
+import LabelModal from "./LabelModal/LabelModal";
+import Label from "./Label/Label";
+import Chips from "./Chips/Chips";
 
-export { Navbar, Footer, Sidebar, Nav, CreateNote, Note, Checkbox };
+export {
+  Navbar,
+  Footer,
+  Sidebar,
+  Nav,
+  CreateNote,
+  Note,
+  Checkbox,
+  EditNote,
+  LabelModal,
+  Label,
+  Chips
+};
