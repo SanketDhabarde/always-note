@@ -17,7 +17,7 @@ function Landing() {
             </p>
           </div>
           <div className="get-started pt-4">
-            <Link to="/home" className="btn btn-primary btn-link">
+            <Link to="/login" className="btn btn-primary btn-link">
               Join Now
             </Link>
           </div>

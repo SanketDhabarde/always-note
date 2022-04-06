@@ -1,8 +1,29 @@
 .sidebar {
+  position: relative;
   max-width: 20rem;
   display: flex;
   flex-direction: column;
   height: 85vh;
   overflow-y: scroll;
   padding-right: 0.5rem;
+}
+
+.sidebar-user-info{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sidebar-user{
+  display: flex;
+  align-items: center;
+}
+
+.avatar-sm{
+  width: 2rem;
+  height: 2rem;
 }

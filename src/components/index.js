@@ -9,6 +9,7 @@ import EditNote from "./EditNote/EditNote";
 import LabelModal from "./LabelModal/LabelModal";
 import Label from "./Label/Label";
 import Chips from "./Chips/Chips";
+import Input from "./Input/Input";
 
 export {
   Navbar,
@@ -21,5 +22,6 @@ export {
   EditNote,
   LabelModal,
   Label,
-  Chips
+  Chips,
+  Input
 };
