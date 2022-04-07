@@ -8,7 +8,7 @@
   padding-right: 0.5rem;
 }
 
-.sidebar-user-info{
+.sidebar-user-info {
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -16,14 +16,15 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  background-color: var(--primary-bg);
 }
 
-.sidebar-user{
+.sidebar-user {
   display: flex;
   align-items: center;
 }
 
-.avatar-sm{
+.avatar-sm {
   width: 2rem;
   height: 2rem;
 }

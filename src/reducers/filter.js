@@ -1,5 +1,6 @@
 const initialState = {
   sortBy: "",
+  filterBy: [],
 };
 
 export const filter = (state = initialState, action) => {
@@ -9,6 +10,13 @@ export const filter = (state = initialState, action) => {
       return {
         ...state,
         sortBy: payload,
+      };
+    case "SET_FILTER_BY":
+      return {
+        ...state,
+        filterBy: state.filterBy.some((_label) => _label === payload)
+          ? state.filterBy.filter((_label) => _label !== payload)
+          : [...state.filterBy, payload],
       };
     default:
       return state;

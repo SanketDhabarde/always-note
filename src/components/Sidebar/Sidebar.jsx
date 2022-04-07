@@ -35,7 +35,7 @@ function Sidebar() {
         title="Trash"
         link="/trash"
       />
-      <Filter/>
+      <Filter />
       <div className="sidebar-user-info px-1">
         <div className="sidebar-user">
           <div className="avatar avatar-txt center-div avatar-sm m-1">

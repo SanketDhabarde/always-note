@@ -1,4 +1,10 @@
-.filter-sorting{
-    display: flex;
-    flex-direction: column;
+.filter {
+  height: 40vh;
+  overflow-y: scroll;
+}
+
+.filter-sorting,
+.filter-labels {
+  display: flex;
+  flex-direction: column;
 }
