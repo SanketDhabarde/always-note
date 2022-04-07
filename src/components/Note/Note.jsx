@@ -42,7 +42,6 @@ function Note({ singleNote, trash, archive }) {
             },
           }
         );
-        console.log(res);
         if (res.status === 201) {
           notesDispatch({ type: "ARCHIVE_NOTE", payload: singleNote });
         }
@@ -60,7 +59,6 @@ function Note({ singleNote, trash, archive }) {
             },
           }
         );
-        console.log(res);
         if (res.status === 200) {
           notesDispatch({ type: "UNARCHIVE_NOTE", payload: singleNote });
         }

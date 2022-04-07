@@ -79,9 +79,7 @@ function CreateNote({ selectedNote, closeModalHandler }) {
           },
         }
       );
-      console.log(res);
       if (res.status === 201) {
-        console.log(updatedNoteFields._id);
         notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
       }
     } catch (error) {
