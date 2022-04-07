@@ -1,0 +1,4 @@
+.filter-sorting{
+    display: flex;
+    flex-direction: column;
+}

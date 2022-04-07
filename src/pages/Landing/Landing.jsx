@@ -6,7 +6,7 @@ import "./Landing.css";
 function Landing() {
   return (
     <>
-      <main className="grid-2-col">
+      <main className="landing-main grid-2-col">
         <div className="content center-div p-5">
           <div className="welcome">
             <h2>Meet your modern</h2>

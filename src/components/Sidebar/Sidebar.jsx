@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
+import Filter from "../Filter/Filter";
 import LabelModal from "../LabelModal/LabelModal";
 import Nav from "../Nav/Nav";
 import "./Sidebar.css";
@@ -34,6 +35,7 @@ function Sidebar() {
         title="Trash"
         link="/trash"
       />
+      <Filter/>
       <div className="sidebar-user-info px-1">
         <div className="sidebar-user">
           <div className="avatar avatar-txt center-div avatar-sm m-1">

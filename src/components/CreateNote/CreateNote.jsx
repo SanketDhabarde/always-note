@@ -48,6 +48,7 @@ function CreateNote({ selectedNote, closeModalHandler }) {
       pinned: false,
       noteColor,
       tags: [...tags],
+      createdAt: new Date().toLocaleString()
     };
     try {
       const res = await axios.post(
@@ -94,6 +95,7 @@ function CreateNote({ selectedNote, closeModalHandler }) {
       title,
       note,
       noteColor,
+      createdAt: new Date().toLocaleString()
     };
     updateNote(updatedNoteFields);
     closeModalHandler(false);
