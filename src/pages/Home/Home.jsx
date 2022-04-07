@@ -1,14 +1,21 @@
 import React from "react";
 import { CreateNote, Note, Sidebar } from "../../components";
-import { useNotes } from "../../context";
+import { useFilters, useNotes } from "../../context";
+import { filterByLabels, sortByDate } from "../../utils";
 import "./Home.css";
 
 function Home() {
   const { notesState } = useNotes();
   const { notes } = notesState;
+  const { filterState } = useFilters();
+  const { sortBy, filterBy } = filterState;
 
-  const pinnedNotes = notes.filter((note) => note.pinned);
-  const unPinnedNotes = notes.filter((note) => !note.pinned);
+  let pinnedNotes = notes.filter((note) => note.pinned);
+  pinnedNotes = filterByLabels(pinnedNotes, filterBy);
+  pinnedNotes = sortByDate(pinnedNotes, sortBy);
+  let unPinnedNotes = notes.filter((note) => !note.pinned);
+  unPinnedNotes = filterByLabels(unPinnedNotes, filterBy);
+  unPinnedNotes = sortByDate(unPinnedNotes, sortBy);
 
   return (
     <div className="home grid-1-5-col">
@@ -39,9 +46,10 @@ function Home() {
             </>
           )}
           {!notes.length && (
-            <div className="center-div">
-              Notes you add appear here🙂
-            </div>
+            <div className="center-div">Notes you add appear here🙂</div>
+          )}
+          {notes.length > 0 && !pinnedNotes.length && !unPinnedNotes.length && (
+            <div className="center-div">No notes matching the filter😥</div>
           )}
         </div>
       </main>

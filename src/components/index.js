@@ -10,6 +10,8 @@ import LabelModal from "./LabelModal/LabelModal";
 import Label from "./Label/Label";
 import Chips from "./Chips/Chips";
 import Input from "./Input/Input";
+import Filter from "./Filter/Filter";
+import RadioInput from "./RadioInput/RadioInput";
 
 export {
   Navbar,
@@ -23,5 +25,7 @@ export {
   LabelModal,
   Label,
   Chips,
-  Input
+  Input,
+  Filter,
+  RadioInput,
 };

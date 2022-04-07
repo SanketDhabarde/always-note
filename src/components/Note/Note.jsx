@@ -6,7 +6,7 @@ import EditNote from "../EditNote/EditNote";
 import "./Note.css";
 
 function Note({ singleNote, trash, archive }) {
-  const { _id, title, note, noteColor, pinned, tags } = singleNote;
+  const { _id, title, note, noteColor, pinned, tags, createdAt } = singleNote;
   const [isEditEnable, setIsEditEnable] = useState(false);
   const { notesDispatch } = useNotes();
   const encodedToken = localStorage.getItem("token");
@@ -50,9 +50,9 @@ function Note({ singleNote, trash, archive }) {
       }
     } else {
       try {
-        console.log("unarchive", _id);
         const res = await axios.post(
-          `/api/archives/restore/${_id}`, { note: singleNote}, 
+          `/api/archives/restore/${_id}`,
+          { note: singleNote },
           {
             headers: {
               authorization: encodedToken,
@@ -65,7 +65,6 @@ function Note({ singleNote, trash, archive }) {
       } catch (e) {
         console.error(e);
       }
-      
     }
   };
 
@@ -96,6 +95,16 @@ function Note({ singleNote, trash, archive }) {
         ))}
       </div>
       <div className="note-footer py-2">
+        <small className="note-date">
+          Created at:{" "}
+          {`${new Date(createdAt).toLocaleDateString()} ${new Date(
+            createdAt
+          ).toLocaleString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          })}`}
+        </small>
         {trash ? (
           <div className="note-footer-options">
             <div
@@ -122,7 +131,6 @@ function Note({ singleNote, trash, archive }) {
           </div>
         ) : (
           <>
-            <small className="note-date">Created at</small>
             <div className="note-footer-options">
               <div
                 className="note-icon center-div"
