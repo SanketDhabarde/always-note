@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNotes } from "../../context";
 import Chips from "../Chips/Chips";
@@ -8,20 +9,65 @@ function Note({ singleNote, trash, archive }) {
   const { _id, title, note, noteColor, pinned, tags } = singleNote;
   const [isEditEnable, setIsEditEnable] = useState(false);
   const { notesDispatch } = useNotes();
+  const encodedToken = localStorage.getItem("token");
 
   const pinNoteHandler = () => {
     notesDispatch({ type: "TOGGLE_PIN_NOTE", payload: _id });
   };
 
-  const deleteNoteHandler = () => {
-    notesDispatch({ type: "DELETE_NOTE", payload: singleNote });
+  const deleteNoteHandler = async () => {
+    try {
+      const res = await axios.delete(`/api/notes/${_id}`, {
+        headers: {
+          authorization: encodedToken,
+        },
+      });
+      if (res.status === 200) {
+        notesDispatch({ type: "DELETE_NOTE", payload: singleNote });
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  const archiveNoteHandler = (type) => {
+  const archiveNoteHandler = async (type) => {
     if (type === "archive") {
-      notesDispatch({ type: "ARCHIVE_NOTE", payload: singleNote });
+      try {
+        const res = await axios.post(
+          `/api/notes/archives/${_id}`,
+          { note: singleNote },
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+        console.log(res);
+        if (res.status === 201) {
+          notesDispatch({ type: "ARCHIVE_NOTE", payload: singleNote });
+        }
+      } catch (e) {
+        console.error(e);
+      }
     } else {
-      notesDispatch({ type: "UNARCHIVE_NOTE", payload: singleNote });
+      try {
+        console.log("unarchive", _id);
+        const res = await axios.post(
+          `/api/archives/restore/${_id}`, { note: singleNote}, 
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+        console.log(res);
+        if (res.status === 200) {
+          notesDispatch({ type: "UNARCHIVE_NOTE", payload: singleNote });
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      
     }
   };
 
@@ -73,7 +119,7 @@ function Note({ singleNote, trash, archive }) {
                 })
               }
             >
-              <i class="fas fa-trash-restore"></i>
+              <i className="fas fa-trash-restore"></i>
             </div>
           </div>
         ) : (

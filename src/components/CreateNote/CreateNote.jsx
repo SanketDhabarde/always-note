@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { useLabels, useNotes } from "../../context";
@@ -35,9 +36,11 @@ function CreateNote({ selectedNote, closeModalHandler }) {
   const { notesDispatch } = useNotes();
   const { labelsState } = useLabels();
   const { labels } = labelsState;
+  const encodedToken = localStorage.getItem("token");
 
-  const noteAddHandler = (e) => {
+  const noteAddHandler = async (e) => {
     e.preventDefault();
+
     const newNote = {
       _id: uuid(),
       title,
@@ -46,11 +49,47 @@ function CreateNote({ selectedNote, closeModalHandler }) {
       noteColor,
       tags: [...tags],
     };
-    notesDispatch({ type: "ADD_NOTE", payload: newNote });
-    dispatch({ type: "RESET_STATE" });
+    try {
+      const res = await axios.post(
+        "/api/notes",
+        { note: newNote },
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      if (res.status === 201) {
+        notesDispatch({ type: "ADD_NOTE", payload: newNote });
+        dispatch({ type: "RESET_STATE" });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const editNoteHandler = (e) => {
+  const updateNote = async (updatedNoteFields) => {
+    try {
+      const res = await axios.post(
+        `api/notes/${updatedNoteFields._id}`,
+        { note: updatedNoteFields },
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      console.log(res);
+      if (res.status === 201) {
+        console.log(updatedNoteFields._id);
+        notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const editNoteHandler = async (e) => {
     e.preventDefault();
     const updatedNoteFields = {
       _id: selectedNote._id,
@@ -58,11 +97,11 @@ function CreateNote({ selectedNote, closeModalHandler }) {
       note,
       noteColor,
     };
-    notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
+    updateNote(updatedNoteFields);
     closeModalHandler(false);
   };
 
-  const handleOnChange = (selectedNote, label) => {
+  const handleOnChange = async (selectedNote, label) => {
     if (selectedNote) {
       const isTagAlreadyAdded = selectedNote.tags.includes(label);
       if (isTagAlreadyAdded) {
@@ -71,13 +110,13 @@ function CreateNote({ selectedNote, closeModalHandler }) {
           _id: selectedNote._id,
           tags: [...newTags],
         };
-        notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
+        updateNote(updatedNoteFields);
       } else {
         const updatedNoteFields = {
           _id: selectedNote._id,
           tags: [...selectedNote.tags, label],
         };
-        notesDispatch({ type: "UPDATE_NOTE", payload: updatedNoteFields });
+        updateNote(updatedNoteFields);
       }
     } else {
       const isTagAlreadyAdded = tags.includes(label);
