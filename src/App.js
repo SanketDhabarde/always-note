@@ -1,7 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components";
-import { Archive, Home, Landing, Login, Signup, Trash } from "./pages";
+import {
+  Archive,
+  Home,
+  Landing,
+  Login,
+  NotFound,
+  Signup,
+  Trash,
+} from "./pages";
 
 function App() {
   return (
@@ -15,6 +23,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/archive" element={<Archive />} />
         <Route path="/trash" element={<Trash />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
