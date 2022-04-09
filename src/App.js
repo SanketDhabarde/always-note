@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Navbar } from "./components";
+import { Navbar, RequiresAuth } from "./components";
 import {
   Archive,
   Home,
@@ -20,9 +20,30 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/archive" element={<Archive />} />
-        <Route path="/trash" element={<Trash />} />
+        <Route
+          path="/home"
+          element={
+            <RequiresAuth>
+              <Home />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/archive"
+          element={
+            <RequiresAuth>
+              <Archive />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/trash"
+          element={
+            <RequiresAuth>
+              <Trash />
+            </RequiresAuth>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

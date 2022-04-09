@@ -12,6 +12,7 @@ import Chips from "./Chips/Chips";
 import Input from "./Input/Input";
 import Filter from "./Filter/Filter";
 import RadioInput from "./RadioInput/RadioInput";
+import RequiresAuth from "./RequiresAuth/RequiresAuth";
 
 export {
   Navbar,
@@ -28,4 +29,5 @@ export {
   Input,
   Filter,
   RadioInput,
+  RequiresAuth,
 };
