@@ -15,7 +15,7 @@ function Footer() {
         <div className="footer-link mt-2 center-div">
           <a
             className="m-1"
-            href="https://github.com/SanketDhabarde"
+            href="https://github.com/SanketDhabarde/always-note"
             target="_blank"
             rel="noopener noreferrer"
           >

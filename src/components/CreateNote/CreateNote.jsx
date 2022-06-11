@@ -170,7 +170,7 @@ function CreateNote({ selectedNote, closeModalHandler }) {
               ></i>
             </div>
             <button className="btn btn-primary" type="submit">
-              {selectedNote ? "Edit" : "Add"}
+              {selectedNote ? "Update" : "Add"}
             </button>
           </div>
           {isColorPalletVisible && (
