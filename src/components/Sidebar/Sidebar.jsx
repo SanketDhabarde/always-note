@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import Filter from "../Filter/Filter";
-import LabelModal from "../LabelModal/LabelModal";
 import Nav from "../Nav/Nav";
 import "./Sidebar.css";
 
