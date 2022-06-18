@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../../components";
+import { useAuth } from "../../context";
 import "./Landing.css";
 
 function Landing() {
+  const { user } = useAuth();
   return (
     <>
       <main className="landing-main grid-2-col">
@@ -17,7 +19,10 @@ function Landing() {
             </p>
           </div>
           <div className="get-started pt-4">
-            <Link to="/login" className="btn btn-primary btn-link">
+            <Link
+              to={user ? "/home" : "/login"}
+              className="btn btn-primary btn-link"
+            >
               Join Now
             </Link>
           </div>
