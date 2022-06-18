@@ -5,7 +5,9 @@
 .label-modal {
   position: absolute;
   top: 30%;
-  left: 40%;
+  left: 0;
+  right: 0;
+  margin: auto;
   width: 20rem;
   max-height: 25rem;
   overflow-y: scroll;
@@ -19,4 +21,10 @@
   outline: none;
   color: var(--primary-text);
   width: 100%;
+}
+
+@media screen and (max-width: 37.5em) {
+  .label-modal {
+    width: 100%;
+  }
 }

@@ -7,7 +7,6 @@ import Nav from "../Nav/Nav";
 import "./Sidebar.css";
 
 function Sidebar() {
-  const [isLabelModalVisible, setIsLabelModalVisible] = useState(false);
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -18,12 +17,6 @@ function Sidebar() {
   };
   return (
     <div className="sidebar py-1">
-      <button
-        className="btn btn-primary"
-        onClick={() => setIsLabelModalVisible(true)}
-      >
-        Create labels
-      </button>
       <Nav icon={<i className="fas fa-home"></i>} title="Home" link="/home" />
       <Nav
         icon={<i className="fas fa-archive"></i>}
@@ -51,9 +44,6 @@ function Sidebar() {
           <i className="fas fa-sign-out-alt"></i>
         </div>
       </div>
-      {isLabelModalVisible && (
-        <LabelModal setIsLabelModalVisible={setIsLabelModalVisible} />
-      )}
     </div>
   );
 }

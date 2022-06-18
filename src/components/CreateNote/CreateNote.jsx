@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useLabels, useNotes } from "../../context";
 import { createNoteReducer } from "../../reducers";
 import Checkbox from "../Checkbox/Checkbox";
 import Chips from "../Chips/Chips";
+import LabelModal from "../LabelModal/LabelModal";
 import "./CreateNote.css";
 
 const NoteColors = [
@@ -17,6 +18,7 @@ const NoteColors = [
 ];
 
 function CreateNote({ selectedNote, closeModalHandler }) {
+  const [isLabelModalVisible, setIsLabelModalVisible] = useState(false);
   const [state, dispatch] = useReducer(createNoteReducer, {
     title: selectedNote?.title || "",
     note: selectedNote?.note || "",
@@ -48,7 +50,7 @@ function CreateNote({ selectedNote, closeModalHandler }) {
       pinned: false,
       noteColor,
       tags: [...tags],
-      createdAt: new Date().toLocaleString()
+      createdAt: new Date().toLocaleString(),
     };
     try {
       const res = await axios.post(
@@ -95,7 +97,7 @@ function CreateNote({ selectedNote, closeModalHandler }) {
       title,
       note,
       noteColor,
-      createdAt: new Date().toLocaleString()
+      createdAt: new Date().toLocaleString(),
     };
     updateNote(updatedNoteFields);
     closeModalHandler(false);
@@ -189,6 +191,12 @@ function CreateNote({ selectedNote, closeModalHandler }) {
           {isLabelPalletVisible && (
             <div className="note-labels p-2 border-m">
               <p className="text-s">Label Note</p>
+              <button
+                className="btn btn-primary"
+                onClick={() => setIsLabelModalVisible(true)}
+              >
+                Create labels
+              </button>
               {labels.map(({ _id, label }) => (
                 <Checkbox
                   key={_id}
@@ -205,6 +213,9 @@ function CreateNote({ selectedNote, closeModalHandler }) {
           )}
         </div>
       </form>
+      {isLabelModalVisible && (
+        <LabelModal setIsLabelModalVisible={setIsLabelModalVisible} />
+      )}
     </div>
   );
 }

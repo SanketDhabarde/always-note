@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import Filter from "../Filter/Filter";
-import LabelModal from "../LabelModal/LabelModal";
 import Nav from "../Nav/Nav";
 import "./MobileSidebar.css";
 
 function MobileSidebar() {
-  const [isLabelModalVisible, setIsLabelModalVisible] = useState(false);
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -18,12 +16,6 @@ function MobileSidebar() {
   };
   return (
     <div className="mobile-sidebar py-1">
-      <button
-        className="btn btn-primary"
-        onClick={() => setIsLabelModalVisible(true)}
-      >
-        Create labels
-      </button>
       <Nav icon={<i className="fas fa-home"></i>} title="Home" link="/home" />
       <Nav
         icon={<i className="fas fa-archive"></i>}
@@ -51,9 +43,6 @@ function MobileSidebar() {
           <i className="fas fa-sign-out-alt"></i>
         </div>
       </div>
-      {isLabelModalVisible && (
-        <LabelModal setIsLabelModalVisible={setIsLabelModalVisible} />
-      )}
     </div>
   );
 }
