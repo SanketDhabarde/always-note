@@ -19,7 +19,7 @@
   justify-content: space-between;
 }
 
-.notes-labels{
+.notes-labels {
   display: flex;
   flex-wrap: wrap;
 }
@@ -43,16 +43,30 @@
   color: var(--gray-txt);
 }
 
-.note-title{
+.note-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-main {
   word-break: break-all;
 }
 
-.note-footer{
+.note-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 
-.note-footer-options{
+.note-footer-options {
   display: flex;
+}
+
+@media screen and (max-width: 62.5em) {
+  .note-footer-options {
+    gap: 0.5em;
+  }
 }

@@ -28,7 +28,7 @@ footer {
   color: var(--secondary-text);
 }
 
-@media screen and (max-width: 37.5em) {
+@media screen and (max-width: 62.5em) {
   main.grid-2-col {
     grid-template-columns: 1fr;
   }

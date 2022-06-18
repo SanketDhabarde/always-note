@@ -1,14 +1,21 @@
-main{
-    height: 85vh;
-    overflow-y: scroll;
-}
-.grid-1-5-col{
-    display: grid;
-    grid-template-columns: 1.2fr 5fr;
+main {
+  height: 85vh;
+  overflow-y: scroll;
 }
 
-.notes{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+.grid-1-5-col {
+  display: grid;
+  grid-template-columns: 1.2fr 5fr;
+}
+
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 62.5em) {
+  .grid-1-5-col {
+    grid-template-columns: 1fr;
+  }
 }

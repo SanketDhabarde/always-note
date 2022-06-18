@@ -8,8 +8,16 @@
   z-index: 1;
 }
 
-.edit-modal {
+.edit-modal > .note {
   position: absolute;
   top: 30%;
-  left: 40%;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+@media screen and (max-width: 37.5em) {
+  .edit-modal > .note {
+    width: 100%;
+  }
 }
