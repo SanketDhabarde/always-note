@@ -71,7 +71,7 @@ function Note({ singleNote, trash, archive }) {
   return (
     <div className={`card m-1 p-2 note-color-${noteColor}`}>
       <div className="note-header">
-        <h3 className="note-title">{title}</h3>
+        <h3 className="note-title" title={title}>{title}</h3>
         {!trash && !archive && (
           <div
             className="note-icon center-div"
@@ -102,11 +102,12 @@ function Note({ singleNote, trash, archive }) {
           ).toLocaleString("en-US", {
             hour: "numeric",
             minute: "numeric",
+            second: "numeric",
             hour12: true,
           })}`}
         </small>
         {trash ? (
-          <div className="note-footer-options">
+          <div className="note-footer-options py-1">
             <div
               className="note-icon center-div"
               title="Delete forever"

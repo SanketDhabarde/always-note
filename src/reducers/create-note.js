@@ -29,22 +29,24 @@ export const createNoteReducer = (state = initialState, action) => {
       return {
         ...state,
         isColorPalletVisible: !state.isColorPalletVisible,
+        isLabelPalletVisible: false,
       };
     case "LABEL_PALLET_VISIBLE":
       return {
         ...state,
         isLabelPalletVisible: !state.isLabelPalletVisible,
+        isColorPalletVisible: false,
       };
     case "ADD_TAG":
-      return{
+      return {
         ...state,
-        tags: [...state.tags, payload]
-      }
+        tags: [...state.tags, payload],
+      };
     case "REMOVE_TAG":
-      return{
+      return {
         ...state,
-        tags: state.tags.filter(tag => tag !== payload)
-      }
+        tags: state.tags.filter((tag) => tag !== payload),
+      };
     case "RESET_STATE":
       return initialState;
     default:

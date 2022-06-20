@@ -8,6 +8,18 @@
   padding-right: 0.5rem;
 }
 
+.mobile-sidebar {
+  position: fixed;
+  background-color: var(--primary-bg-transparent);
+  z-index: 1;
+  max-width: 20rem;
+  display: none;
+  flex-direction: column;
+  height: 86vh;
+  overflow-y: scroll;
+  padding-right: 0.5rem;
+}
+
 .sidebar-user-info {
   width: 100%;
   position: absolute;
@@ -27,4 +39,14 @@
 .avatar-sm {
   width: 2rem;
   height: 2rem;
+}
+
+@media screen and (max-width: 62.5em) {
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-sidebar {
+    display: flex;
+  }
 }
