@@ -13,7 +13,6 @@ import Input from "./Input/Input";
 import Filter from "./Filter/Filter";
 import RadioInput from "./RadioInput/RadioInput";
 import RequiresAuth from "./RequiresAuth/RequiresAuth";
-import MobileSidebar from "./MobileSidebar/MobileSidebar";
 
 export {
   Navbar,
@@ -31,5 +30,4 @@ export {
   Filter,
   RadioInput,
   RequiresAuth,
-  MobileSidebar,
 };

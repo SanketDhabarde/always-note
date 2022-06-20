@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useToggle } from "../../hooks";
-import MobileSidebar from "../MobileSidebar/MobileSidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import "./Navbar.css";
 
 function Navbar() {
@@ -21,7 +21,7 @@ function Navbar() {
           </Link>
         </div>
       </header>
-      {isMobileSidebarVisible && <MobileSidebar />}
+      {isMobileSidebarVisible && <Sidebar mobile />}
     </>
   );
 }
