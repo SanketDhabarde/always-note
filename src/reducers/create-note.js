@@ -25,18 +25,6 @@ export const createNoteReducer = (state = initialState, action) => {
         ...state,
         noteColor: payload,
       };
-    case "COLOR_PALLET_VISIBLE":
-      return {
-        ...state,
-        isColorPalletVisible: !state.isColorPalletVisible,
-        isLabelPalletVisible: false,
-      };
-    case "LABEL_PALLET_VISIBLE":
-      return {
-        ...state,
-        isLabelPalletVisible: !state.isLabelPalletVisible,
-        isColorPalletVisible: false,
-      };
     case "ADD_TAG":
       return {
         ...state,

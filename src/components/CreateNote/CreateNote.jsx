@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useLabels, useNotes } from "../../context";
+import { useOnClickOutside } from "../../hooks";
 import { createNoteReducer } from "../../reducers";
 import Checkbox from "../Checkbox/Checkbox";
 import Chips from "../Chips/Chips";
@@ -19,55 +20,53 @@ const NoteColors = [
 
 function CreateNote({ selectedNote, closeModalHandler }) {
   const [isLabelModalVisible, setIsLabelModalVisible] = useState(false);
+  const [isColorPalletVisible, setColorPalletVisible] = useState(false);
+  const [isLabelPalletVisible, setLabelPalletVisible] = useState(false);
+  const colorPalletRef = useRef(null);
+  const labelPalletRef = useRef(null);
   const [state, dispatch] = useReducer(createNoteReducer, {
     title: selectedNote?.title || "",
     note: selectedNote?.note || "",
-    isColorPalletVisible: false,
-    isLabelPalletVisible: false,
     noteColor: selectedNote?.noteColor || "",
     tags: selectedNote?.tags || [],
   });
-  const {
-    title,
-    note,
-    isColorPalletVisible,
-    isLabelPalletVisible,
-    noteColor,
-    tags,
-  } = state;
+  const { title, note, noteColor, tags } = state;
   const { notesDispatch } = useNotes();
   const { labelsState } = useLabels();
   const { labels } = labelsState;
   const encodedToken = localStorage.getItem("token");
+  useOnClickOutside(colorPalletRef, () => setColorPalletVisible(false));
+  useOnClickOutside(labelPalletRef, () => setLabelPalletVisible(false));
 
   const noteAddHandler = async (e) => {
     e.preventDefault();
-
-    const newNote = {
-      _id: uuid(),
-      title,
-      note,
-      pinned: false,
-      noteColor,
-      tags: [...tags],
-      createdAt: new Date().toLocaleString(),
-    };
-    try {
-      const res = await axios.post(
-        "/api/notes",
-        { note: newNote },
-        {
-          headers: {
-            authorization: encodedToken,
-          },
+    if (title) {
+      const newNote = {
+        _id: uuid(),
+        title,
+        note,
+        pinned: false,
+        noteColor,
+        tags: [...tags],
+        createdAt: new Date().toLocaleString(),
+      };
+      try {
+        const res = await axios.post(
+          "/api/notes",
+          { note: newNote },
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+        if (res.status === 201) {
+          notesDispatch({ type: "ADD_NOTE", payload: newNote });
+          dispatch({ type: "RESET_STATE" });
         }
-      );
-      if (res.status === 201) {
-        notesDispatch({ type: "ADD_NOTE", payload: newNote });
-        dispatch({ type: "RESET_STATE" });
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -164,11 +163,13 @@ function CreateNote({ selectedNote, closeModalHandler }) {
             <div className="note-icons">
               <i
                 className="fas fa-palette"
-                onClick={() => dispatch({ type: "COLOR_PALLET_VISIBLE" })}
+                ref={colorPalletRef}
+                onClick={() => setColorPalletVisible((prevState) => !prevState)}
               ></i>
               <i
                 className="fas fa-tag"
-                onClick={() => dispatch({ type: "LABEL_PALLET_VISIBLE" })}
+                ref={labelPalletRef}
+                onClick={() => setLabelPalletVisible((prevState) => !prevState)}
               ></i>
             </div>
             <button className="btn btn-primary" type="submit">
